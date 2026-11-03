@@ -10,9 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VitalDentist - Gestión de Roles</title>
     <link rel="icon" type="image/png" href="${ctx}/Vista/Imagenes/logo2.0.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    
+    <!-- Nasimpa ti SonarQube: Nainayon ti integrity ken crossorigin -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Nasimpa ti SonarQube: Nainayon ti integrity ken crossorigin -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
+    
+    <!-- Nasimpa ti SonarQube: Inusar ti eksakto a bersion (11.11.0) tapno umno ti hash -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" integrity="sha256-h2GcvOa4U/JPMk4f4FqZ69X3F5e3ksRzZ8s/5qM829c=" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="${ctx}/Vista/Css/Cssvital.css">
 </head>
 <body class="dashboard-shell" style="background-color: var(--vital-bg-page); overflow-y: auto !important;">
@@ -107,8 +114,8 @@
     </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js" integrity="sha256-wA/Uccu1vNnJg6xU1+zB9wYqQ1U3L3+lB5zK0hQ5b5E=" crossorigin="anonymous"></script>
 <script src="${ctx}/Vista/Javascript/validaciones.js"></script>
 </body>
 </html>

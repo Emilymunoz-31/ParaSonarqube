@@ -13,9 +13,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VitalDentist - Control de Citas</title>
     <link rel="icon" type="image/png" href="${ctx}/Vista/Imagenes/logo2.0.png">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+          integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="${ctx}/Vista/Css/Cssvital.css">
 </head>
 <body class="dashboard-shell" style="background-color: var(--vital-bg-page); overflow-y: auto !important;">
@@ -32,7 +38,7 @@
             <a href="${ctx}/AgendarCitaServlet" class="btn btn-primary rounded-pill px-4 shadow-sm fw-semibold hover-effect">
                 <i class="bi bi-plus-circle-fill me-2"></i> Agregar Nueva Cita
             </a>
-            
+
             <c:choose>
                 <c:when test="${sessionScope.usuarioLogueado.rol_id_Rol == 1 or fn:containsIgnoreCase(sessionScope.usuarioLogueado.descripcionRol, 'odont')}">
                     <a href="${ctx}/OdontologoInicioServlet" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm transition-all hover-effect">
@@ -134,7 +140,7 @@
                                     <form action="${ctx}/ControlCitasAgendadasServlet" method="POST" class="m-0 p-0">
                                         <input type="hidden" name="accion" value="cambiarEstado">
                                         <input type="hidden" name="idCita" value="${cita.id_Cita}">
-                                        
+
                                         <select name="nuevoEstado" class="form-select select-estado px-3 py-1 rounded-pill fw-semibold border ${colorEstado}" onchange="this.form.submit()">
                                             <c:choose>
                                                 <c:when test="${not empty estadosCita}">
@@ -188,6 +194,8 @@
         </div>
     </div>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

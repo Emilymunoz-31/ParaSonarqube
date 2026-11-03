@@ -1,12 +1,18 @@
-﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="jakarta.tags.core" prefix="c" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medios de pago</title>
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Vista/Imagenes/logo2.0.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="${ctx}/Vista/Css/Cssvital.css"></head>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="${ctx}/Vista/Css/Cssvital.css">
+</head>
 <body class="registration-page admin-module-page">
 <main class="container py-5">
     <div class="admin-back-row"><a class="btn btn-outline-primary" href="${ctx}/AdminInicioServlet">Volver al Inicio</a></div>
@@ -18,4 +24,3 @@
 <script src="${ctx}/Vista/Javascript/validaciones.js"></script>
 </body>
 </html>
-
