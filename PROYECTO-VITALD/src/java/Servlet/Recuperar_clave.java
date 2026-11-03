@@ -3,6 +3,9 @@ package Servlet;
 import Controlador.UsuarioDAO;
 import Conexion.EmailUtil;
 import java.io.IOException;
+import java.security.SecureRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,10 +15,15 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name = "Recuperar_clave", urlPatterns = {"/RecuperarClave", "/Recuperar_clave"})
 public class Recuperar_clave extends HttpServlet {
 
+    private static final Logger LOGGER = Logger.getLogger(Recuperar_clave.class.getName());
+    private static final SecureRandom RANDOM = new SecureRandom();
+    private static final String VISTA = "/Vista/RestablecerClave.jsp";
+    private static final String MENSAJE = "mensaje";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/Vista/RestablecerClave.jsp").forward(request, response);
+        request.getRequestDispatcher(VISTA).forward(request, response);
     }
 
     @Override
@@ -27,8 +35,8 @@ public class Recuperar_clave extends HttpServlet {
 
         try {
             if (correo == null || correo.trim().isEmpty()) {
-                request.setAttribute("mensaje", "Por favor, ingresa tu correo electrónico.");
-                request.getRequestDispatcher("/Vista/RestablecerClave.jsp").forward(request, response);
+                request.setAttribute(MENSAJE, "Por favor, ingresa tu correo electrónico.");
+                request.getRequestDispatcher(VISTA).forward(request, response);
                 return;
             }
 
@@ -38,7 +46,7 @@ public class Recuperar_clave extends HttpServlet {
             boolean existe = usuarioDao.verificarCorreoExiste(correoLimpio);
 
             if (existe) {
-                String codigoTemporal = "VD" + (int) (Math.random() * 90 + 10);
+                String codigoTemporal = "VD" + (100000 + RANDOM.nextInt(900000));
 
                 usuarioDao.actualizarContrasenaPorCorreo(correoLimpio, codigoTemporal);
 
@@ -46,22 +54,21 @@ public class Recuperar_clave extends HttpServlet {
 
                 if (enviado) {
                     request.setAttribute("correoPrecargado", correoLimpio);
-                    request.setAttribute("mensaje", "Te hemos enviado un código de verificación a tu correo.");
-                    
-                    request.getRequestDispatcher("/Vista/RestablecerClave.jsp").forward(request, response);
+                    request.setAttribute(MENSAJE, "Te hemos enviado un código de verificación a tu correo.");
+                    request.getRequestDispatcher(VISTA).forward(request, response);
                     return;
                 } else {
-                    request.setAttribute("mensaje", "No se pudo enviar el correo. Intenta de nuevo.");
+                    request.setAttribute(MENSAJE, "No se pudo enviar el correo. Intenta de nuevo.");
                 }
             } else {
-                request.setAttribute("mensaje", "Si el correo existe en nuestro sistema, recibirás el código de verificación.");
+                request.setAttribute(MENSAJE, "Si el correo existe en nuestro sistema, recibirás el código de verificación.");
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("mensaje", "Ocurrió un error al procesar la solicitud: " + e.getMessage());
+            LOGGER.log(Level.SEVERE, "Error al procesar la solicitud de recuperación de clave", e);
+            request.setAttribute(MENSAJE, "Ocurrió un error al procesar la solicitud. Intenta de nuevo más tarde.");
         }
 
-        request.getRequestDispatcher("/Vista/RestablecerClave.jsp").forward(request, response);
+        request.getRequestDispatcher(VISTA).forward(request, response);
     }
 }
