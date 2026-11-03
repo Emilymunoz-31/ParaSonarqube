@@ -1,0 +1,1345 @@
+/* ==========================================================================
+  VITALDENTIST - CSS 
+   ========================================================================== */
+
+/* ---------------------------------------------------
+   1.  PALETA 
+--------------------------------------------------- */
+:root {
+    --vital-mint: #84D796;
+    --vital-mint-600: #4EAE65;
+    --vital-mint-100: rgba(132, 215, 150, 0.16);
+    --vital-mint-200: rgba(132, 215, 150, 0.30);
+    --vital-mint-glow: rgba(132, 215, 150, 0.50);
+
+    --vital-navy: #1B2A41;
+    --vital-navy-deep: #131E33;
+    --vital-dark-blue: #2A3D55;
+    --vital-blue-light: #3e587a;
+
+    --vital-text-dark: #22304A;
+    --vital-text-muted: #74839A;
+
+    --vital-bg-page: #F3F5F8;
+    --vital-bg-white: #FFFFFF;
+    --vital-card-border: rgba(27, 42, 65, 0.08);
+
+    --vital-shadow-sm: 0 4px 14px rgba(20, 31, 51, 0.06);
+    --vital-shadow-md: 0 12px 30px rgba(20, 31, 51, 0.12);
+    --vital-radius: 1.1rem;
+    --vital-radius-lg: 1.4rem;
+
+    /* Estados de Citas */
+    --vital-status-programada-bg: rgba(13, 110, 253, 0.15);
+    --vital-status-programada-text: #0d6efd;
+    --vital-status-reprogramada-bg: rgba(245, 158, 11, 0.15);
+    --vital-status-reprogramada-text: #b45309;
+    --vital-status-confirmada-bg: rgba(132, 215, 150, 0.20);
+    --vital-status-confirmada-text: #2f7a45;
+    --vital-status-pendiente-bg: rgba(255, 193, 7, 0.18);
+    --vital-status-pendiente-text: #8a6300;
+    --vital-status-cancelada-bg: rgba(220, 53, 69, 0.14);
+    --vital-status-cancelada-text: #dc3545;
+    --vital-status-atendida-bg: rgba(25, 135, 84, 0.18);
+    --vital-status-atendida-text: #198754;
+    --vital-status-default-bg: rgba(27, 42, 65, 0.08);
+    --vital-status-default-text: var(--vital-navy);
+
+    /* Variables de Recuperación de Cuenta */
+    --recover-bg-a: #E9F3F1;
+    --recover-bg-b: #F6FAF9;
+    --recover-ink: #133B37;
+    --recover-ink-muted: #5E7C77;
+    --recover-primary: #0E7C71;
+    --recover-primary-dark: #0A5F57;
+    --recover-primary-tint: #E3F2EE;
+    --recover-border: #DCEAE6;
+    --recover-error: #C4453B;
+    --recover-error-tint: #FBEBE9;
+    --recover-ok: #2E9166;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Avenir', 'Outfit', sans-serif;
+    color: var(--vital-text-dark);
+    margin: 0;
+    padding: 0;
+}
+
+body.dashboard-page,
+body.appointment-page { 
+    background-color: var(--vital-bg-page); 
+}
+
+a:focus-visible, button:focus-visible, .btn:focus-visible, .form-control:focus, .form-select:focus {
+    outline: 3px solid var(--vital-mint-200);
+    outline-offset: 2px;
+    box-shadow: none;
+    border-color: var(--vital-mint) !important;
+}
+
+/* ---------------------------------------------------
+   2. FORMULARIOS DEL SISTEMA 
+--------------------------------------------------- */
+.form-control, .form-select {
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background-color: #f7f9fc;
+    padding: 10px 14px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #ffffff;
+    border-color: var(--vital-mint) !important;
+    box-shadow: 0 0 0 4px var(--vital-mint-glow) !important;
+    outline: none;
+    transform: translateY(-2px);
+}
+
+.card, .vital-card {
+    border: none !important;
+    border-radius: 20px !important;
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(42, 61, 85, 0.05);
+    transition: all 0.4s ease;
+}
+
+.card:hover, .vital-card:hover {
+    box-shadow: 0 16px 36px rgba(42, 61, 85, 0.10);
+}
+
+.btn-vital-primary {
+    background: linear-gradient(135deg, var(--vital-dark-blue), var(--vital-blue-light));
+    color: white !important;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 25px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(42, 61, 85, 0.2);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-vital-primary:hover {
+    background: var(--vital-mint);
+    color: var(--vital-navy-deep) !important;
+    transform: scale(1.03) translateY(-2px);
+    box-shadow: 0 10px 25px var(--vital-mint-glow);
+}
+
+.btn-nueva-cita {
+    background: var(--vital-mint);
+    border: none;
+    color: var(--vital-navy-deep);
+    font-weight: 700;
+    border-radius: 50rem;
+    padding: 0.75rem 1.6rem;
+    box-shadow: var(--vital-shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-nueva-cita:hover, .btn-nueva-cita:focus {
+    background: var(--vital-mint-600);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--vital-shadow-md);
+}
+
+.transaction-alert {
+    background-color: var(--vital-mint-100);
+    color: var(--vital-navy-deep);
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.icon-circle-lg {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+}
+
+.icon-circle-md {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.2rem;
+}
+
+/* ---------------------------------------------------
+   3.(PANEL DE CONTROL)
+--------------------------------------------------- */
+.dashboard-shell {
+    min-height: 100vh;
+    align-items: stretch;
+    display: flex;
+}
+
+.dashboard-sidebar-v2 {
+    width: 264px;
+    flex-shrink: 0;
+    background: linear-gradient(180deg, var(--vital-navy) 0%, var(--vital-navy-deep) 100%);
+    color: #B9C6D6;
+    padding: 1.6rem 1.15rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.sidebar-brand-row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0 0.25rem;
+    margin-bottom: 1.6rem;
+}
+
+.sidebar-brand-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sidebar-brand-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: brightness(0) invert(1);
+}
+
+.sidebar-brand-text {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.sidebar-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #7E8CA3;
+    font-weight: 700;
+    padding: 0 0.35rem;
+    margin-bottom: 0.85rem;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.sidebar-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem 0.8rem;
+    border-radius: 0.85rem;
+    color: #B9C6D6;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-nav-link i {
+    font-size: 1.05rem;
+    width: 1.2rem;
+    text-align: center;
+}
+
+.sidebar-nav-link:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff;
+}
+
+.sidebar-nav-link.active {
+    background: var(--vital-mint);
+    color: var(--vital-navy-deep);
+    box-shadow: var(--vital-shadow-sm);
+}
+
+.sidebar-subgroup-label {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #647289;
+    font-weight: 700;
+    margin: 1.2rem 0.35rem 0.4rem;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.45rem 0.4rem;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0.75rem;
+}
+
+.sidebar-user:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.sidebar-user-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--vital-mint-200);
+    color: var(--vital-mint);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.sidebar-user-name { font-weight: 700; font-size: 0.88rem; }
+.sidebar-user-role { font-size: 0.7rem; color: #8a97ac; }
+
+/* ---------------------------------------------------
+RESPONSIVE
+--------------------------------------------------- */
+.mobile-topbar {
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--vital-navy);
+    color: #fff;
+    padding: 0.85rem 1rem;
+    border-radius: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 767.98px) {
+    .dashboard-sidebar-v2.desktop-only { display: none !important; }
+    .mobile-topbar { display: flex; }
+    .dashboard-main-v2 { padding: 1rem !important; }
+}
+
+.offcanvas.dashboard-sidebar-v2 {
+    position: fixed;
+    height: 100vh;
+    z-index: 1060 !important;
+}
+
+.offcanvas.dashboard-sidebar-v2 .btn-close {
+    filter: invert(1) grayscale(1) brightness(2);
+}
+
+.offcanvas-backdrop {
+    z-index: 1050 !important;
+}
+
+/* ---------------------------------------------------
+   4. DASHBOARD
+--------------------------------------------------- */
+.dashboard-main-v2 {
+    padding: 1.9rem 2.2rem;
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.hero-card {
+    background: radial-gradient(circle at top right, var(--vital-mint-100) 0%, var(--vital-bg-white) 55%);
+    border: 1px solid var(--vital-card-border);
+    border-radius: var(--vital-radius-lg);
+    box-shadow: var(--vital-shadow-sm);
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--vital-text-muted);
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.hero-title {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--vital-navy);
+    margin-bottom: 0.2rem;
+}
+
+.hero-subtitle {
+    color: var(--vital-text-muted);
+    margin-bottom: 0;
+}
+
+.hero-metric-pill {
+    background: var(--vital-bg-white);
+    border: 1px solid var(--vital-card-border);
+    border-radius: 1rem;
+    padding: 0.6rem 1.15rem;
+    text-align: center;
+    min-width: 92px;
+    box-shadow: var(--vital-shadow-sm);
+}
+
+.hero-metric-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--vital-navy);
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.hero-metric-label {
+    font-size: 0.68rem;
+    color: var(--vital-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.panel-card {
+    background: var(--vital-bg-white);
+    border: 1px solid var(--vital-card-border);
+    border-radius: var(--vital-radius-lg);
+    box-shadow: var(--vital-shadow-sm);
+    padding: 1.5rem;
+    height: 100%;
+}
+
+.panel-title {
+    font-weight: 700;
+    color: var(--vital-navy);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.appointment-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem;
+    border-radius: 1rem;
+    background: var(--vital-bg-page);
+    margin-bottom: 0.65rem;
+    gap: 0.75rem;
+}
+
+.appointment-row:last-child { margin-bottom: 0; }
+.appointment-left { display: flex; align-items: center; gap: 0.7rem; min-width: 0; }
+
+.appointment-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--vital-mint-200);
+    color: var(--vital-mint-600);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.appointment-name { font-weight: 700; color: var(--vital-navy); font-size: 0.92rem; }
+.appointment-sub { font-size: 0.78rem; color: var(--vital-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.appointment-time {
+    background: var(--vital-mint-100);
+    color: var(--vital-navy);
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 50rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ---------------------------------------------------
+  BARRA DE ESTADOS DE CITAS
+--------------------------------------------------- */
+.distribution-bar {
+    display: flex;
+    width: 100%;
+    height: 12px;
+    border-radius: 50rem;
+    background-color: #e9ecef;
+    overflow: hidden;
+    gap: 2px;
+    margin-bottom: 1.25rem;
+    padding: 2px;
+}
+
+.distribution-segment {
+    height: 100%;
+    border-radius: 50rem;
+    transition: all 0.3s ease;
+}
+.distribution-segment[data-status="programada"] { background-color: #0d6efd !important; }
+.distribution-segment[data-status="reprogramada"] { background-color: #f59e0b !important; }
+.distribution-segment[data-status="cancelada"] { background-color: #dc3545 !important; }
+.distribution-segment[data-status="atendida"],
+.distribution-segment[data-status="tomada"] { background-color: #198754 !important; }
+
+.legend-chip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0.85rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+    background-color: #f8fafc;
+    border: 1px solid #edf2f7;
+    font-size: 0.88rem;
+    color: #334155;
+    transition: transform 0.2s ease;
+}
+
+.legend-chip:hover {
+    transform: translateX(3px);
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.legend-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.legend-dot[data-status="programada"] {
+    background-color: #0d6efd !important;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+}
+.legend-dot[data-status="reprogramada"] {
+    background-color: #f59e0b !important;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+}
+.legend-dot[data-status="cancelada"] {
+    background-color: #dc3545 !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2);
+}
+.legend-dot[data-status="atendida"],
+.legend-dot[data-status="tomada"] {
+    background-color: #198754 !important;
+    box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.2);
+}
+
+/* Feature Cards */
+.feature-card {
+    display: block;
+    background: var(--vital-bg-white);
+    border: 1.5px solid var(--vital-mint-200);
+    border-radius: var(--vital-radius-lg);
+    padding: 1.4rem;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    box-shadow: var(--vital-shadow-sm);
+    height: 100%;
+}
+
+.feature-card:hover {
+    border-color: var(--vital-mint);
+    transform: translateY(-4px);
+    box-shadow: var(--vital-shadow-md);
+}
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--vital-mint-200);
+    color: var(--vital-mint-600);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.feature-title { font-weight: 700; color: var(--vital-navy); margin-bottom: 0.2rem; }
+.feature-sub { font-size: 0.82rem; color: var(--vital-text-muted); margin-bottom: 0; }
+
+.scroll-hint {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--vital-bg-white);
+    border: 1px solid var(--vital-card-border);
+    box-shadow: var(--vital-shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vital-text-muted);
+    margin: 0.5rem auto 1.75rem;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+.scroll-hint:hover { transform: translateY(3px); color: var(--vital-mint-600); }
+
+.admin-card {
+    border: 1px solid var(--vital-card-border);
+    border-radius: var(--vital-radius-lg);
+    box-shadow: var(--vital-shadow-sm);
+    background-color: var(--vital-bg-white);
+}
+
+.admin-card-header {
+    background-color: var(--vital-bg-white);
+    border-bottom: 1px solid var(--vital-card-border);
+    padding: 1.25rem;
+}
+
+.table-search-wrap .form-control { border-color: var(--vital-card-border); }
+.table-search-wrap .input-group-text {
+    background-color: var(--vital-bg-white);
+    border-color: var(--vital-card-border);
+    color: var(--vital-text-muted);
+}
+
+.table-vital thead th {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--vital-text-muted);
+    background-color: rgba(27, 42, 65, 0.03);
+    border-bottom-width: 1px;
+}
+
+.table-vital tbody tr { transition: background-color 0.15s ease-in-out; }
+.table-vital tbody tr:hover { background-color: var(--vital-mint-100); }
+
+.patient-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--vital-mint-200);
+    color: var(--vital-mint-600);
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.6rem;
+}
+
+.badge.bg-primary { 
+    background-color: var(--vital-mint) !important; 
+    color: var(--vital-navy) !important; 
+}
+
+.empty-state-icon {
+    width: 84px;
+    height: 84px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--vital-bg-page);
+    color: var(--vital-text-muted);
+}
+
+/* ---------------------------------------------------
+   5. CONTROL DE CITAS 
+--------------------------------------------------- */
+.select-estado {
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-align: center;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.select-estado option {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+}
+
+.cita-vencida td {
+    background-color: #f8f9fa !important;
+    opacity: 0.85;
+}
+
+/* ---------------------------------------------------
+   6. MÓDULO FINANCIERO, PAGOS Y ABONOS
+--------------------------------------------------- */
+.finance-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f4fcf7 100%);
+    border: 1px solid rgba(132, 215, 150, 0.3);
+}
+
+.patient-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.patient-cell-avatar {
+    width: 36px; 
+    height: 36px; 
+    border-radius: 50%;
+    background-color: var(--vital-mint-100);
+    color: var(--vital-mint-600);
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-weight: bold;
+}
+
+.badge-payment {
+    background-color: var(--vital-navy);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+}
+
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.filter-btn.active {
+    background-color: var(--vital-navy, #0f172a) !important;
+    color: #ffffff !important;
+}
+
+/* ---------------------------------------------------
+   7. PORTAL ODONTOLÓGICO
+--------------------------------------------------- */
+.clinic-hero {
+    background: linear-gradient(135deg, var(--vital-navy, #0f172a) 0%, #1e293b 100%);
+    border-radius: 1.25rem;
+    color: #ffffff;
+    padding: 2rem 2.25rem;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.clinic-hero::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(132, 215, 150, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.portal-card {
+    background: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+}
+
+.portal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+    border-color: rgba(132, 215, 150, 0.6);
+}
+
+.portal-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.patient-avatar-mini {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--vital-mint-100, #e6f9ed);
+    color: var(--vital-mint-600, #166534);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* ---------------------------------------------------
+   8. MÓDULO DE ORTODONCIA 
+--------------------------------------------------- */
+.search-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f4f8fc 100%);
+    border: 1px solid rgba(132, 215, 150, 0.4);
+}
+
+.patient-summary-card {
+    background: linear-gradient(120deg, var(--vital-navy) 0%, var(--vital-navy-deep) 100%);
+    border-radius: var(--vital-radius-lg);
+    padding: 1.5rem 1.75rem;
+    color: #fff;
+    box-shadow: var(--vital-shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+.patient-summary-card::after {
+    content: "";
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(132,215,150,0.35) 0%, transparent 70%);
+    pointer-events: none;
+}
+.patient-summary-avatar {
+    width: 58px; height: 58px; border-radius: 50%;
+    background: var(--vital-mint);
+    color: var(--vital-navy-deep);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1.4rem;
+    box-shadow: var(--vital-shadow-sm);
+    flex-shrink: 0;
+}
+.patient-summary-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.15rem; }
+.patient-summary-meta { color: #B9C6D6; font-size: 0.85rem; }
+.patient-summary-meta strong { color: #fff; }
+
+.stage-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 0.8rem;
+    border-radius: 50rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+.stage-1 { background-color: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+.stage-2 { background-color: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+.stage-3 { background-color: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+.stage-4 { background-color: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+
+.stat-card {
+    background: var(--vital-bg-white);
+    border: 1px solid var(--vital-card-border);
+    border-radius: var(--vital-radius);
+    box-shadow: var(--vital-shadow-sm);
+    padding: 1.1rem 1.2rem;
+    height: 100%;
+    display: flex; align-items: center; gap: 0.9rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.stat-card:hover { transform: translateY(-4px); box-shadow: var(--vital-shadow-md); }
+.stat-icon {
+    width: 46px; height: 46px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem; flex-shrink: 0;
+}
+.stat-value { font-size: 1.5rem; font-weight: 800; color: var(--vital-navy); line-height: 1.1; }
+.stat-label { font-size: 0.74rem; color: var(--vital-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+
+.toolbar-vital {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0 1.3rem 1.1rem;
+}
+.filter-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.filter-chip {
+    border: 1.5px solid var(--vital-card-border);
+    background: var(--vital-bg-white);
+    color: var(--vital-text-muted);
+    font-weight: 700; font-size: 0.78rem;
+    padding: 0.4rem 0.95rem;
+    border-radius: 50rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+}
+.filter-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.filter-chip:hover { border-color: var(--vital-mint); color: var(--vital-navy); }
+.filter-chip.active {
+    background: var(--vital-navy);
+    border-color: var(--vital-navy);
+    color: #fff;
+}
+.view-switch {
+    display: inline-flex; background: var(--vital-bg-page);
+    border-radius: 50rem; padding: 0.25rem; gap: 0.15rem;
+}
+.view-switch button {
+    border: none; background: transparent; color: var(--vital-text-muted);
+    font-weight: 700; font-size: 0.8rem; padding: 0.4rem 0.9rem;
+    border-radius: 50rem; transition: all 0.2s ease;
+}
+.view-switch button.active { background: var(--vital-bg-white); color: var(--vital-navy); box-shadow: var(--vital-shadow-sm); }
+
+.timeline { position: relative; padding: 1.75rem 1.75rem 1.75rem 2.5rem; }
+.timeline::before {
+    content: "";
+    position: absolute; left: 2.55rem; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--vital-mint) 0%, var(--vital-card-border) 100%);
+}
+.timeline-item {
+    position: relative;
+    padding-left: 1.75rem;
+    padding-bottom: 1.6rem;
+    opacity: 0;
+    animation: rowIn 0.5s ease forwards;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item.row-hidden { display: none !important; }
+.timeline-dot {
+    position: absolute; left: -1.9rem; top: 0.2rem;
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 3px solid var(--vital-bg-white);
+    box-shadow: 0 0 0 2px var(--vital-status-default-text);
+    background: var(--vital-status-default-text);
+    z-index: 2;
+}
+.timeline-card {
+    background: var(--vital-bg-page);
+    border: 1px solid var(--vital-card-border);
+    border-radius: var(--vital-radius);
+    padding: 1rem 1.15rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.timeline-card:hover { transform: translateX(4px); box-shadow: var(--vital-shadow-sm); }
+
+#btnBuscar.is-loading .btn-label { visibility: hidden; }
+#btnBuscar .spinner-border { display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 1.1rem; height: 1.1rem; }
+#btnBuscar.is-loading .spinner-border { display: inline-block; }
+#btnBuscar { position: relative; }
+
+.table-vital tbody tr { opacity: 0; animation: rowIn 0.45s ease forwards; }
+.table-vital tbody tr.row-hidden { display: none !important; }
+@keyframes rowIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ---------------------------------------------------
+   9. FORMULARIO RECUPERAR CONTRASEÑA Y RESTABLECER CLAVE
+--------------------------------------------------- */
+body.recover-page {
+    background: linear-gradient(160deg, var(--recover-bg-a) 0%, var(--recover-bg-b) 55%);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--recover-ink);
+}
+
+.brand-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.brand-mark .tooth-badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--recover-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+}
+.brand-mark span {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--recover-ink);
+    letter-spacing: -0.01em;
+}
+
+.recover-card, .otp-Form {
+    border: 1px solid var(--recover-border);
+}
+
+.icon-circle-recover {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: var(--recover-primary-tint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+.icon-circle-recover i {
+    font-size: 1.6rem;
+    color: var(--recover-primary);
+}
+
+h2.color-primario, .mainHeading {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    color: var(--recover-ink) !important;
+    letter-spacing: -0.01em;
+    font-size: 1.4rem;
+}
+
+.text-muted, .otpSubheading { 
+    color: var(--recover-ink-muted) !important; 
+}
+
+.alert-info {
+    background: var(--recover-primary-tint);
+    border: 1px solid var(--recover-border);
+    color: var(--recover-primary-dark);
+}
+.alert-danger {
+    background: var(--recover-error-tint);
+    border: 1px solid #F3D3CF;
+    color: var(--recover-error);
+}
+.alert-light {
+    background: var(--recover-bg-b);
+    border: 1px solid var(--recover-border) !important;
+    color: var(--recover-ink-muted);
+}
+
+.form-label { 
+    color: var(--recover-ink-muted); 
+    font-size: 0.85rem; 
+}
+
+.input-group-text {
+    background: var(--recover-primary-tint) !important;
+    border-color: var(--recover-border);
+}
+.form-control, .input-pass-vital {
+    border-color: var(--recover-border);
+}
+.form-control:focus, .input-pass-vital:focus {
+    border-color: var(--recover-primary);
+    box-shadow: 0 0 0 0.2rem rgba(14,124,113,0.12);
+}
+.form-control.is-valid-custom {
+    border-color: var(--recover-ok);
+}
+#correoFeedbackOk {
+    color: var(--recover-ok);
+}
+.invalid-feedback {
+    color: var(--recover-error);
+}
+
+.btn-primary, .verifyButton {
+    background: var(--recover-primary);
+    border-color: var(--recover-primary);
+    border-radius: 10px;
+    letter-spacing: 0.01em;
+}
+.btn-primary:hover, .verifyButton:hover, 
+.btn-primary:active, .verifyButton:active {
+    background: var(--recover-primary-dark) !important;
+    border-color: var(--recover-primary-dark) !important;
+}
+.btn-primary:disabled, .verifyButton:disabled {
+    opacity: 0.7;
+}
+.btn-outline-secondary {
+    border-radius: 10px;
+    color: var(--recover-ink-muted);
+    border-color: var(--recover-border);
+}
+.btn-outline-secondary:hover {
+    background: var(--recover-primary-tint);
+    color: var(--recover-ink);
+    border-color: var(--recover-border);
+}
+
+/* Estilos específicos OTP */
+.step-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 1.75rem;
+}
+.step-track .seg {
+    height: 4px;
+    width: 40px;
+    border-radius: 2px;
+    background: var(--recover-border);
+}
+.step-track .seg.done { background: var(--recover-primary); }
+.step-caption {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--recover-ink-muted);
+    font-weight: 500;
+    margin-top: -1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.otp-input {
+    width: 3rem;
+    height: 3.4rem;
+    border: none;
+    border-bottom: 3px solid var(--recover-border);
+    border-radius: 6px 6px 0 0;
+    background: var(--recover-primary-tint);
+    font-family: 'Sora', sans-serif;
+    color: var(--recover-ink);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.otp-input:focus {
+    border-color: var(--recover-primary);
+    background: #fff;
+    box-shadow: none;
+}
+#otpError { color: var(--recover-error); }
+
+.resendBtn { color: var(--recover-primary); }
+.resendBtn:hover { color: var(--recover-primary-dark); }
+
+.pass-toggle-btn {
+    cursor: pointer;
+    background: #fff;
+    border-left: 0;
+    border-color: var(--recover-border);
+}
+.pass-toggle-btn:hover { background: var(--recover-primary-tint); }
+
+.pass-strength-bar {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+}
+.pass-strength-bar .seg {
+    height: 5px;
+    flex: 1;
+    border-radius: 3px;
+    background: var(--recover-border);
+    transition: background-color 0.2s ease;
+}
+
+.req-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 10px;
+}
+.req-list li {
+    font-size: 0.76rem;
+    color: var(--recover-ink-muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.req-list li i { font-size: 0.8rem; color: var(--recover-border); }
+.req-list li.met { color: var(--recover-ok); }
+.req-list li.met i { color: var(--recover-ok); }
+
+.match-feedback {
+    font-size: 0.8rem;
+    margin-top: 6px;
+    display: none;
+    align-items: center;
+    gap: 5px;
+}
+.match-feedback.show { display: flex; }
+.match-feedback.ok { color: var(--recover-ok); }
+.match-feedback.bad { color: var(--recover-error); }
+
+.exitBtn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 1.35rem;
+    color: #B7C9C5;
+    text-decoration: none;
+    line-height: 1;
+}
+.exitBtn:hover { color: var(--recover-ink-muted); }
+
+.modal-content { border: 1px solid var(--recover-border); }
+.color-primario { color: var(--recover-primary); }
+.btn-light.rounded-pill { border: 1px solid var(--recover-border); }
+
+/* ---------------------------------------------------
+   11. MÓDULO DE ROLES
+--------------------------------------------------- */
+.role-card-modern {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fbf9 100%);
+    border: 1px solid rgba(132, 215, 150, 0.25);
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 30px rgba(20, 31, 51, 0.04);
+}
+
+.role-icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: rgba(132, 215, 150, 0.15);
+    color: #2f7a45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.table-roles th {
+    background-color: #f8f9fa !important;
+    font-weight: 600;
+    color: #475569;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+/* ---------------------------------------------------
+   12. MÓDULO DE CATEGORÍAS 
+--------------------------------------------------- */
+.category-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f4f7f6 100%);
+    border: 1px solid rgba(132, 215, 150, 0.2);
+}
+
+.badge-category {
+    background-color: var(--vital-mint-100);
+    color: var(--vital-navy-deep);
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--vital-mint-200);
+}
+
+/* ---------------------------------------------------
+   13. MÓDULO DE ESTADOS DE CITA
+--------------------------------------------------- */
+.status-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f4f7f6 100%);
+    border: 1px solid rgba(132, 215, 150, 0.2);
+}
+
+.badge-status {
+    background-color: var(--vital-blue-light);
+    color: white;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* ---------------------------------------------------
+   14. MÓDULO DE TIPOS DE DOCUMENTO
+--------------------------------------------------- */
+.doc-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f4f7f6 100%);
+    border: 1px solid rgba(132, 215, 150, 0.2);
+}
+
+.badge-doc {
+    background-color: var(--vital-navy);
+    color: white;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+}
+
+/* ---------------------------------------------------
+   15. MÓDULO DE TRATAMIENTOS 
+--------------------------------------------------- */
+.treatment-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fbfc 100%);
+    border: 1px solid rgba(132, 215, 150, 0.3);
+}
+
+/* ---------------------------------------------------
+   16. MÓDULO DE GESTIÓN DE PERSONAL Y USUARIOS
+--------------------------------------------------- */
+.nav-pills-vital .nav-link {
+    border-radius: 50rem;
+    color: var(--vital-text-muted);
+    font-weight: 600;
+    padding: 0.8rem 1.75rem;
+    margin-right: 0.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+.nav-pills-vital .nav-link:hover {
+    background-color: var(--vital-mint-100);
+    color: var(--vital-navy);
+}
+.nav-pills-vital .nav-link.active {
+    background-color: var(--vital-mint);
+    color: var(--vital-navy-deep);
+    box-shadow: 0 4px 15px rgba(132, 215, 150, 0.4);
+    border-color: var(--vital-mint);
+    transform: translateY(-2px);
+}
+.staff-form-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f4f7f6 100%);
+    border: 1px solid rgba(132, 215, 150, 0.2);
+}
+.avatar-admin { background-color: rgba(42, 61, 85, 0.1); color: var(--vital-navy); }
+.avatar-odont { background-color: var(--vital-mint-200); color: var(--vital-mint-600); }
+.avatar-paciente { background-color: #e9ecef; color: #6c757d; }
+
+/* ---------------------------------------------------
+   17. ANIMACIONES
+--------------------------------------------------- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up {
+    animation: fadeInUp 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+.hover-effect { transition: all 0.3s ease; }
+.hover-effect:hover { opacity: 0.85; }
+.cursor-pointer { cursor: pointer !important; }
