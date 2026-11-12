@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+Q<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="jakarta.tags.core" prefix="c" %>
 <%@taglib uri="jakarta.tags.functions" prefix="fn" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
@@ -77,10 +77,10 @@
                         
                         <div class="row g-4">
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">Nombre de la Categoría</label>
+                                <label for="inputNombreCategoria" class="form-label fw-semibold text-secondary small">Nombre de la Categoría</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-bookmark-fill"></i></span>
-                                    <input type="text" name="descripcion" class="form-control border-0 bg-white fw-bold text-dark" value="${categoriaEditar.nombre_categoria}" placeholder="Ej: Ortodoncia, Cirugía..." required>
+                                    <input type="text" id="inputNombreCategoria" name="descripcion" class="form-control border-0 bg-white fw-bold text-dark" value="${categoriaEditar.nombre_categoria}" placeholder="Ej: Ortodoncia, Cirugía..." required>
                                     <div class="invalid-feedback">Por favor ingrese el nombre de la categoría.</div>
                                 </div>
                             </div>

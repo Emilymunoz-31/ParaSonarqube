@@ -76,19 +76,19 @@
                         
                         <div class="row g-4">
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">Descripción del Tratamiento</label>
+                                <label for="inputDescripcionTratamiento" class="form-label fw-semibold text-secondary small">Descripción del Tratamiento</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-fonts"></i></span>
-                                    <input type="text" name="descripcion" class="form-control border-0 bg-white fw-medium" value="${tratamientoEditar.descripcion_tipotratam}" placeholder="Ej: Resina Fotocurable" required>
+                                    <input type="text" id="inputDescripcionTratamiento" name="descripcion" class="form-control border-0 bg-white fw-medium" value="${tratamientoEditar.descripcion_tipotratam}" placeholder="Ej: Resina Fotocurable" required>
                                     <div class="invalid-feedback">Ingrese una descripción válida.</div>
                                 </div>
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">Costo Base ($)</label>
+                                <label for="inputCostoTratamiento" class="form-label fw-semibold text-secondary small">Costo Base ($)</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-success border-0"><i class="bi bi-currency-dollar"></i></span>
-                                    <input type="number" name="costo" class="form-control border-0 bg-white fw-bold text-dark" 
+                                    <input type="number" id="inputCostoTratamiento" name="costo" class="form-control border-0 bg-white fw-bold text-dark" 
                                            value="<c:if test='${not empty tratamientoEditar}'><fmt:formatNumber value='${tratamientoEditar.costo}' pattern='0' groupingUsed='false' /></c:if>" 
                                            min="1" step="1" placeholder="Ej: 80000" required>
                                     <div class="invalid-feedback">Ingrese un costo válido mayor a cero (solo números).</div>
@@ -96,10 +96,10 @@
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">Categoría Clínica</label>
+                                <label for="selectCategoriaTratamiento" class="form-label fw-semibold text-secondary small">Categoría Clínica</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-tags-fill"></i></span>
-                                    <select name="categoria" class="form-select border-0 bg-white fw-medium" required>
+                                    <select id="selectCategoriaTratamiento" name="categoria" class="form-select border-0 bg-white fw-medium" required>
                                         <option value="" disabled ${empty tratamientoEditar ? 'selected' : ''}>Seleccione la categoría...</option>
                                         <c:forEach var="categoria" items="${categorias}">
                                             <option value="${categoria.id_Categoria}" ${tratamientoEditar.categoria_Tratamiento_id_Categoria == categoria.id_Categoria ? 'selected' : ''}>
@@ -144,10 +144,10 @@
                         <table class="table table-vital table-hover table-borderless align-middle mb-0">
                             <thead class="sticky-top bg-light" style="z-index: 1;">
                                 <tr>
-                                    <th class="ps-4 py-3 rounded-start">Descripción del Servicio</th>
-                                    <th class="py-3">Categoría</th>
-                                    <th class="py-3 text-end">Costo Est.</th>
-                                    <th class="pe-4 py-3 text-center rounded-end">Acciones</th>
+                                    <th scope="col" class="ps-4 py-3 rounded-start">Descripción del Servicio</th>
+                                    <th scope="col" class="py-3">Categoría</th>
+                                    <th scope="col" class="py-3 text-end">Costo Est.</th>
+                                    <th scope="col" class="pe-4 py-3 text-center rounded-end">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -173,10 +173,10 @@
                                         </td>
                                         <td class="pe-4 py-3 text-center">
                                             <div class="d-flex justify-content-center gap-1">
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect" style="width: 35px; height: 35px; line-height: 22px;" title="Editar" href="${ctx}/RegistroTipoTratamientoServlet?accion=editar&id=${tratamiento.id_Tipotratam}">
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect" style="width: 35px; height: 35px; line-height: 22px;" title="Editar" aria-label="Editar" href="${ctx}/RegistroTipoTratamientoServlet?accion=editar&id=${tratamiento.id_Tipotratam}">
                                                     <i class="bi bi-pencil-square text-primary"></i>
                                                 </a>
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect delete-btn" style="width: 35px; height: 35px; line-height: 22px;" title="Eliminar" href="${ctx}/RegistroTipoTratamientoServlet?accion=eliminar&id=${tratamiento.id_Tipotratam}">
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect delete-btn" style="width: 35px; height: 35px; line-height: 22px;" title="Eliminar" aria-label="Eliminar" href="${ctx}/RegistroTipoTratamientoServlet?accion=eliminar&id=${tratamiento.id_Tipotratam}">
                                                     <i class="bi bi-trash-fill text-danger"></i>
                                                 </a>
                                             </div>
@@ -203,7 +203,7 @@
     </div>
 </main>
 
-}<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js" integrity="sha256-wA/Uccu1vNnJg6xU1+zB9wYqQ1U3L3+lB5zK0hQ5b5E=" crossorigin="anonymous"></script>
 <script src="${ctx}/Vista/Javascript/validaciones.js"></script>
 

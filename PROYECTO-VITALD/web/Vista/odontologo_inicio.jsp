@@ -17,8 +17,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VitalDentist - Portal Odontológico</title>
-    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Vista/Imagenes/logo2.0.png">    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Vista/Imagenes/logo2.0.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Vista/Css/Cssvital.css">
 </head>
@@ -92,7 +93,7 @@
                     <span class="sidebar-brand-icon">
                         <img src="${pageContext.request.contextPath}/Vista/Imagenes/logo2.0.png" alt="Logo VitalDentist">
                     </span>
-                    <span class="sidebar-brand-text">VitalDentist</span>
+                    <span id="sidebarMenuLabel" class="sidebar-brand-text">VitalDentist</span>
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Cerrar"></button>
             </div>
@@ -123,7 +124,7 @@
 
         <main class="dashboard-main-v2 flex-grow-1 p-3 p-md-4">
             <div class="mobile-topbar d-md-none mb-3">
-                <button class="btn btn-sm btn-light shadow-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                <button class="btn btn-sm btn-light shadow-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-label="Abrir menú">
                     <i class="bi bi-list fs-4"></i>
                 </button>
                 <span class="fw-bold fs-5 text-primary">VitalDentist Clínico</span>
@@ -253,6 +254,7 @@
                     <div class="d-flex align-items-center gap-2">
                         <div class="input-group input-group-sm" style="max-width: 240px;">
                             <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+                            <label for="filtroCronograma" class="visually-hidden">Buscar paciente o fecha</label>
                             <input type="search" id="filtroCronograma" class="form-control border-start-0 ps-0" placeholder="Buscar paciente o fecha...">
                         </div>
                         <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 rounded-pill px-3 py-2">
@@ -266,11 +268,11 @@
                         <table class="table table-hover align-middle mb-0" id="tablaCronograma">
                             <thead class="table-light sticky-top">
                                 <tr>
-                                    <th class="ps-4 py-3 text-uppercase text-secondary small fw-bold">Fecha y Hora</th>
-                                    <th class="py-3 text-uppercase text-secondary small fw-bold">Paciente</th>
-                                    <th class="py-3 text-uppercase text-secondary small fw-bold">Tratamiento Asignado</th>
-                                    <th class="py-3 text-uppercase text-secondary small fw-bold text-center">Estado</th>
-                                    <th class="pe-4 py-3 text-uppercase text-secondary small fw-bold text-end">Gestión</th>
+                                    <th scope="col" class="ps-4 py-3 text-uppercase text-secondary small fw-bold">Fecha y Hora</th>
+                                    <th scope="col" class="py-3 text-uppercase text-secondary small fw-bold">Paciente</th>
+                                    <th scope="col" class="py-3 text-uppercase text-secondary small fw-bold">Tratamiento Asignado</th>
+                                    <th scope="col" class="py-3 text-uppercase text-secondary small fw-bold text-center">Estado</th>
+                                    <th scope="col" class="pe-4 py-3 text-uppercase text-secondary small fw-bold text-end">Gestión</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -342,7 +344,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
                 <div class="modal-header bg-primary bg-opacity-10 border-bottom-0 pb-3 pt-4 px-4">
-                    <h5 class="modal-title fw-bold text-primary">
+                    <h5 id="modalMiPerfilLabel" class="modal-title fw-bold text-primary">
                         <i class="bi bi-person-lines-fill me-2"></i> Mi Perfil Profesional
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -369,44 +371,44 @@
                         
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">Nombres</label>
-                                <input type="text" name="txtNombres" class="form-control bg-light border-0 shadow-sm" value="${usuarioLogueado.nombreus}" required>
+                                <label for="perfilNombres" class="form-label small fw-semibold text-secondary">Nombres</label>
+                                <input type="text" id="perfilNombres" name="txtNombres" class="form-control bg-light border-0 shadow-sm" value="${usuarioLogueado.nombreus}" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">Apellidos</label>
-                                <input type="text" name="txtApellidos" class="form-control bg-light border-0 shadow-sm" value="${usuarioLogueado.apellido}" required>
+                                <label for="perfilApellidos" class="form-label small fw-semibold text-secondary">Apellidos</label>
+                                <input type="text" id="perfilApellidos" name="txtApellidos" class="form-control bg-light border-0 shadow-sm" value="${usuarioLogueado.apellido}" required>
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">
+                                <label for="perfilTipoDoc" class="form-label small fw-semibold text-secondary">
                                     Tipo de Documento <i class="bi bi-lock-fill text-danger opacity-75 ms-1" title="Campo bloqueado por seguridad"></i>
                                 </label>
-                                <input type="text" class="form-control bg-secondary bg-opacity-10 border-0 text-muted" value="Registrado en sistema" disabled>
+                                <input type="text" id="perfilTipoDoc" class="form-control bg-secondary bg-opacity-10 border-0 text-muted" value="Registrado en sistema" disabled>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">
+                                <label for="perfilDocumento" class="form-label small fw-semibold text-secondary">
                                     Número de Documento <i class="bi bi-lock-fill text-danger opacity-75 ms-1" title="Campo bloqueado por seguridad"></i>
                                 </label>
-                                <input type="text" class="form-control bg-secondary bg-opacity-10 border-0 text-muted fw-bold" value="${usuarioLogueado.documento}" disabled>
+                                <input type="text" id="perfilDocumento" class="form-control bg-secondary bg-opacity-10 border-0 text-muted fw-bold" value="${usuarioLogueado.documento}" disabled>
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label small fw-semibold text-secondary">Fecha de Nac.</label>
-                                <input type="date" name="txtFechaNac" class="form-control bg-light border-0 shadow-sm" value="${usuarioLogueado.fecha_nacimiento}" required>
+                                <label for="perfilFechaNac" class="form-label small fw-semibold text-secondary">Fecha de Nac.</label>
+                                <input type="date" id="perfilFechaNac" name="txtFechaNac" class="form-control bg-light border-0 shadow-sm" value="${usuarioLogueado.fecha_nacimiento}" required>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label small fw-semibold text-secondary">Teléfono</label>
-                                <input type="tel" name="txtTelefono" class="form-control bg-light border-0 shadow-sm" value="${usuarioLogueado.telefono}" required>
+                                <label for="perfilTelefono" class="form-label small fw-semibold text-secondary">Teléfono</label>
+                                <input type="tel" id="perfilTelefono" name="txtTelefono" class="form-control bg-light border-0 shadow-sm" value="${usuarioLogueado.telefono}" required>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label small fw-semibold text-secondary">Correo Electrónico</label>
-                                <input type="email" name="txtCorreo" class="form-control bg-light border-0 shadow-sm" value="${usuarioLogueado.correo}" required>
+                                <label for="perfilCorreo" class="form-label small fw-semibold text-secondary">Correo Electrónico</label>
+                                <input type="email" id="perfilCorreo" name="txtCorreo" class="form-control bg-light border-0 shadow-sm" value="${usuarioLogueado.correo}" required>
                             </div>
 
                             <div class="col-12 mt-3">
-                                <label class="form-label small fw-semibold text-secondary"><i class="bi bi-key me-1"></i>Cambiar Contraseña (Opcional)</label>
+                                <label for="perfilPassword" class="form-label small fw-semibold text-secondary"><i class="bi bi-key me-1"></i>Cambiar Contraseña (Opcional)</label>
                                 <div class="input-group shadow-sm rounded-3 overflow-hidden border-0">
-                                    <input type="password" name="txtPassword" class="form-control bg-light border-0" placeholder="Dejar en blanco para conservar la actual...">
+                                    <input type="password" id="perfilPassword" name="txtPassword" class="form-control bg-light border-0" placeholder="Dejar en blanco para conservar la actual...">
                                 </div>
                                 <div class="form-text small">Si no deseas cambiar tu clave, deja este campo vacío.</div>
                             </div>
@@ -422,7 +424,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         document.getElementById('filtroCronograma').addEventListener('input', function() {
             const termino = this.value.toLowerCase().trim();

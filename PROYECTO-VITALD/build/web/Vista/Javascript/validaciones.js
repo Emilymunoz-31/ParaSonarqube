@@ -38,9 +38,9 @@ const reglas = {
         patron: /^[0-9]{5,15}$/,
         mensaje: "Ingrese un documento valido."
     },
-   txtTelefono: {
-    patron: /^[0-9]{7,10}$/,
-    mensaje: "El número de teléfono debe tener de 7 a 10 dígitos."
+    txtTelefono: {
+        patron: /^[0-9]{7,10}$/,
+        mensaje: "El número de teléfono debe tener de 7 a 10 dígitos."
     },
     txtCorreo: {
         patron: /^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
@@ -54,7 +54,6 @@ const reglas = {
         patron: /^[\p{L}0-9 .,'-]{2,80}$/u,
         mensaje: "Ingrese una descripcion valida."
     },
-    // Reglas flexibilizadas para permitir formato de miles como 1.800.000
     costo: {
         patron: /^[\d.,]+$/,
         mensaje: "Ingrese un costo valido (solo números, puntos o comas)."
@@ -242,7 +241,6 @@ document.addEventListener('DOMContentLoaded', () => {
         documentoCitaInput.addEventListener('change', buscarPaciente);
     }
 
-    // === NUEVA VALIDACIÓN: Bloqueo de documento duplicado en Registro de Usuarios ===
     const inputDocRegistro = document.getElementById('txtDocumento');
     const formRegistroUsuario = document.getElementById('registroUsuarioForm');
 
@@ -252,10 +250,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const accionInput = formRegistroUsuario.querySelector('input[name="accion"]');
             const accion = accionInput ? accionInput.value : 'insertar';
 
-            // Solo verificamos existencia al intentar insertar un usuario nuevo
             if (accion === 'insertar' && /^[0-9]{7,10}$/.test(documento)) {
                 try {
-                    // Reutilizamos el endpoint de buscarPaciente que ya existe para las citas
                     const baseUrl = window.location.pathname.replace(/\/[^/]*$/, '');
                     const url = `${baseUrl}/AgendarCitaServlet?accion=buscarPaciente&documento=${encodeURIComponent(documento)}`;
                     const respuesta = await fetch(url, { headers: { Accept: 'application/json' } });
@@ -274,7 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Interceptamos el envío del formulario si está duplicado
         formRegistroUsuario.addEventListener('submit', (event) => {
             if (inputDocRegistro.dataset.duplicado === "true") {
                 event.preventDefault();
@@ -322,22 +317,27 @@ function mostrarTransaccionFormulario() {
         return;
     }
 
-    cargarSweetAlert().then(() => {
-        Swal.fire({
-            title: esExito ? 'Transaccion exitosa' : 'No se pudo registrar',
-            html: esExito
-                ? '<strong>Registro guardado correctamente.</strong><br>La informacion quedo almacenada correctamente en VitalDentist.'
-                : '<strong>No se pudo guardar.</strong><br>Revise los datos e intentelo nuevamente.',
-            icon: esExito ? 'success' : 'error',
-            customClass: {
-                popup: 'vital-transaction-popup',
-                confirmButton: 'vital-confirm-button'
-            },
-            confirmButtonText: esExito ? 'Continuar' : 'Revisar'
-        }).then(() => {
+    cargarSweetAlert()
+        .then(() =>
+            Swal.fire({
+                title: esExito ? 'Transaccion exitosa' : 'No se pudo registrar',
+                html: esExito
+                    ? '<strong>Registro guardado correctamente.</strong><br>La informacion quedo almacenada correctamente en VitalDentist.'
+                    : '<strong>No se pudo guardar.</strong><br>Revise los datos e intentelo nuevamente.',
+                icon: esExito ? 'success' : 'error',
+                customClass: {
+                    popup: 'vital-transaction-popup',
+                    confirmButton: 'vital-confirm-button'
+                },
+                confirmButtonText: esExito ? 'Continuar' : 'Revisar'
+            })
+        )
+        .then(() => {
             window.history.replaceState(null, null, window.location.pathname);
+        })
+        .catch((err) => {
+            console.error("Error al cargar o mostrar la alerta de la transacción:", err);
         });
-    });
 }
 
 function aplicarIconosFormulario() {
@@ -398,4 +398,4 @@ function aplicarIconosFormulario() {
         i.setAttribute('aria-hidden', 'true');
         label.prepend(i);
     });
-}
+}   

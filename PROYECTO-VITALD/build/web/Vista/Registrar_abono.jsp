@@ -79,10 +79,10 @@
                         
                         <div class="row g-4">
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">1. Cuenta a Abonar (Pago)</label>
+                                <label for="selectCuentaPago" class="form-label fw-semibold text-secondary small">1. Cuenta a Abonar (Pago)</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-file-earmark-medical-fill"></i></span>
-                                    <select name="pago" class="form-select border-0 bg-white fw-medium text-dark" required>
+                                    <select id="selectCuentaPago" name="pago" class="form-select border-0 bg-white fw-medium text-dark" required>
                                         <option value="" disabled ${empty abonoEditar && empty param.idPago ? 'selected' : ''}>Seleccione la cuenta...</option>
                                         <c:forEach var="pago" items="${pagos}">
                                             <c:set var="isSelected" value="${(abonoEditar.pago_id_Pago == pago.id_Pago) or (param.idPago == pago.id_Pago)}" />
@@ -97,10 +97,10 @@
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">2. Monto a Ingresar</label>
+                                <label for="inputMontoAbono" class="form-label fw-semibold text-secondary small">2. Monto a Ingresar</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-success border-0 fs-5 fw-bold">$</span>
-                                    <input type="number" name="monto" class="form-control border-0 bg-white fw-bold text-dark fs-5" 
+                                    <input type="number" id="inputMontoAbono" name="monto" class="form-control border-0 bg-white fw-bold text-dark fs-5" 
                                            value="<c:if test='${not empty abonoEditar}'><fmt:formatNumber value='${abonoEditar.monto_abono}' pattern='0' groupingUsed='false' /></c:if>" 
                                            min="1" step="1"
                                            placeholder="Ej. 50000" required>
@@ -109,10 +109,10 @@
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">3. Fecha del Comprobante</label>
+                                <label for="inputFechaAbono" class="form-label fw-semibold text-secondary small">3. Fecha del Comprobante</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-calendar2-check"></i></span>
-                                    <input type="date" name="fecha" class="form-control border-0 bg-white fw-medium text-dark" 
+                                    <input type="date" id="inputFechaAbono" name="fecha" class="form-control border-0 bg-white fw-medium text-dark" 
                                            value="${not empty abonoEditar.fecha_abono ? abonoEditar.fecha_abono : hoyStr}" required>
                                     <div class="invalid-feedback">Indique la fecha en la que se realizó este pago.</div>
                                 </div>

@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VitalDentist - Programar Cita</title>
     <link rel="icon" type="image/png" href="${ctx}/Vista/Imagenes/logo2.0.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" integrity="sha256-h2GcvOa4U/JPMk4f4FqZ69X3F5e3ksRzZ8s/5qM829c=" crossorigin="anonymous">
     <link rel="stylesheet" href="${ctx}/Vista/Css/Cssvital.css">
 </head>
 <body class="appointment-page dashboard-shell" style="background-color: var(--vital-bg-page); overflow-y: auto !important;">
@@ -102,7 +102,7 @@
                             </div>
                             <div>
                                 <span class="badge bg-success bg-opacity-10 text-success rounded-pill mb-1">Paciente Confirmado</span>
-                                <h3 id="pacienteNombreTitulo" class="h5 mb-0 fw-bold text-dark"></h3>
+                                <h3 id="pacienteNombreTitulo" class="h5 mb-0 fw-bold text-dark">Paciente seleccionado</h3>
                             </div>
                         </div>
                         <button type="button" id="limpiarPaciente" class="btn btn-sm btn-white border shadow-sm rounded-pill px-3 text-danger fw-bold hover-effect bg-white">
@@ -112,19 +112,19 @@
 
                     <div class="row g-4">
                         <div class="col-md-3 col-sm-6">
-                            <label class="form-label small text-muted fw-bold text-uppercase mb-1"><i class="bi bi-person me-1"></i>Nombre</label>
+                            <label for="datoNombrePaciente" class="form-label small text-muted fw-bold text-uppercase mb-1"><i class="bi bi-person me-1"></i>Nombre</label>
                             <input type="text" id="datoNombrePaciente" class="form-control form-control-sm bg-transparent border-0 fw-bold text-dark fs-6 px-0" readonly>
                         </div>
                         <div class="col-md-3 col-sm-6">
-                            <label class="form-label small text-muted fw-bold text-uppercase mb-1"><i class="bi bi-card-heading me-1"></i>Documento</label>
+                            <label for="datoDocumentoPaciente" class="form-label small text-muted fw-bold text-uppercase mb-1"><i class="bi bi-card-heading me-1"></i>Documento</label>
                             <input type="text" id="datoDocumentoPaciente" class="form-control form-control-sm bg-transparent border-0 fw-bold text-dark fs-6 px-0" readonly>
                         </div>
                         <div class="col-md-3 col-sm-6">
-                            <label class="form-label small text-muted fw-bold text-uppercase mb-1"><i class="bi bi-telephone me-1"></i>Teléfono</label>
+                            <label for="datoTelefonoPaciente" class="form-label small text-muted fw-bold text-uppercase mb-1"><i class="bi bi-telephone me-1"></i>Teléfono</label>
                             <input type="text" id="datoTelefonoPaciente" class="form-control form-control-sm bg-transparent border-0 fw-bold text-dark fs-6 px-0" readonly>
                         </div>
                         <div class="col-md-3 col-sm-6">
-                            <label class="form-label small text-muted fw-bold text-uppercase mb-1"><i class="bi bi-envelope-at me-1"></i>Correo</label>
+                            <label for="datoCorreoPaciente" class="form-label small text-muted fw-bold text-uppercase mb-1"><i class="bi bi-envelope-at me-1"></i>Correo</label>
                             <input type="text" id="datoCorreoPaciente" class="form-control form-control-sm bg-transparent border-0 fw-bold text-dark fs-6 px-0" readonly>
                         </div>
                     </div>
@@ -141,10 +141,10 @@
                 <div class="row g-4">
 
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold text-secondary small">Profesional Odontólogo</label>
+                        <label for="txtIdOdontologo" class="form-label fw-semibold text-secondary small">Profesional Odontólogo</label>
                         <div class="input-group shadow-sm rounded-4 overflow-hidden border border-light">
                             <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-person-badge fs-5"></i></span>
-                            <select name="txtIdOdontologo" class="form-select border-0 bg-white" required>
+                            <select id="txtIdOdontologo" name="txtIdOdontologo" class="form-select border-0 bg-white" required>
                                 <option value="" disabled selected>Seleccione un especialista...</option>
                                 <c:forEach var="odontologo" items="${odontologos}">
                                     <option value="${odontologo.id_Usuario}" ${citaEditar.usuario_id_Usuario == odontologo.id_Usuario ? 'selected' : ''}>Dr/a. ${odontologo.nombreus} ${odontologo.apellido}</option>
@@ -155,7 +155,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold text-secondary small">Categoría de Tratamiento</label>
+                        <label for="selectCategoria" class="form-label fw-semibold text-secondary small">Categoría de Tratamiento</label>
                         <div class="input-group shadow-sm rounded-4 overflow-hidden border border-light">
                             <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-tags fs-5"></i></span>
                             <select id="selectCategoria" class="form-select border-0 bg-white">
@@ -168,7 +168,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold text-secondary small">Tratamiento Específico</label>
+                        <label for="txtIdTratamiento" class="form-label fw-semibold text-secondary small">Tratamiento Específico</label>
                         <div class="input-group shadow-sm rounded-4 overflow-hidden border border-light">
                             <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-bandaid fs-5"></i></span>
                             <select id="txtIdTratamiento" name="txtIdTratamiento" class="form-select border-0 bg-white" required>
@@ -188,26 +188,26 @@
                     <div class="col-12"><hr class="my-3 text-muted opacity-10"></div>
 
                     <div class="col-md-4">
-                        <label class="form-label fw-semibold text-secondary small">Fecha de la Cita</label>
+                        <label for="txtFechaCita" class="form-label fw-semibold text-secondary small">Fecha de la Cita</label>
                         <div class="input-group shadow-sm rounded-4 overflow-hidden border border-light">
                             <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-calendar-event fs-5"></i></span>
-                            <input type="date" name="txtFechaCita" class="form-control border-0 bg-white fw-bold text-dark" value="${fechaEditar}" required>
+                            <input type="date" id="txtFechaCita" name="txtFechaCita" class="form-control border-0 bg-white fw-bold text-dark" value="${fechaEditar}" required>
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label fw-semibold text-secondary small">Hora</label>
+                        <label for="txtHoraCita" class="form-label fw-semibold text-secondary small">Hora</label>
                         <div class="input-group shadow-sm rounded-4 overflow-hidden border border-light">
                             <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-clock fs-5"></i></span>
-                            <input type="time" name="txtHoraCita" class="form-control border-0 bg-white fw-bold text-dark" value="${horaEditar}" required>
+                            <input type="time" id="txtHoraCita" name="txtHoraCita" class="form-control border-0 bg-white fw-bold text-dark" value="${horaEditar}" required>
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label fw-semibold text-secondary small">Estado Inicial</label>
+                        <label for="txtEstadoCita" class="form-label fw-semibold text-secondary small">Estado Inicial</label>
                         <div class="input-group shadow-sm rounded-4 overflow-hidden border border-light">
                             <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-flag fs-5"></i></span>
-                            <select name="txtEstadoCita" class="form-select border-0 bg-white fw-bold text-dark" required>
+                            <select id="txtEstadoCita" name="txtEstadoCita" class="form-select border-0 bg-white fw-bold text-dark" required>
                                 <option value="" disabled selected>Seleccione...</option>
                                 <c:forEach var="estado" items="${estadosCita}">
                                     <option value="${estado.idEstado_cita}" ${citaEditar.estado_cita_idEstado_cita == estado.idEstado_cita ? 'selected' : ''}>${estado.descripcion_estadoci}</option>
@@ -217,8 +217,8 @@
                     </div>
 
                     <div class="col-12 mt-4">
-                        <label class="form-label fw-semibold text-secondary small"><i class="bi bi-journal-text me-1 text-primary"></i> Observaciones Médicas</label>
-                        <textarea name="txtObservaciones" class="form-control bg-light border-0 shadow-sm rounded-4 p-3" rows="2" placeholder="Ej: Paciente asiste a control mensual...">${citaEditar.descripcion_cita}</textarea>
+                        <label for="txtObservaciones" class="form-label fw-semibold text-secondary small"><i class="bi bi-journal-text me-1 text-primary"></i> Observaciones Médicas</label>
+                        <textarea id="txtObservaciones" name="txtObservaciones" class="form-control bg-light border-0 shadow-sm rounded-4 p-3" rows="2" placeholder="Ej: Paciente asiste a control mensual...">${citaEditar.descripcion_cita}</textarea>
                     </div>
 
                 </div>
@@ -252,22 +252,22 @@
                     </div>
                     Registro Rápido de Paciente
                 </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
             <div class="modal-body px-4 px-md-5 pb-5 pt-3">
                 <form action="${ctx}/RegistrarPacienteModalServlet" method="POST" class="needs-validation" novalidate id="formRegistroRapidoModal">
                     <div class="row g-4">
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold text-secondary small">Nombres</label>
-                            <input type="text" name="txtNombresModal" class="form-control rounded-3 shadow-sm border-0 bg-white" required>
+                            <label for="txtNombresModal" class="form-label fw-semibold text-secondary small">Nombres</label>
+                            <input type="text" id="txtNombresModal" name="txtNombresModal" class="form-control rounded-3 shadow-sm border-0 bg-white" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold text-secondary small">Apellidos</label>
-                            <input type="text" name="txtApellidosModal" class="form-control rounded-3 shadow-sm border-0 bg-white" required>
+                            <label for="txtApellidosModal" class="form-label fw-semibold text-secondary small">Apellidos</label>
+                            <input type="text" id="txtApellidosModal" name="txtApellidosModal" class="form-control rounded-3 shadow-sm border-0 bg-white" required>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-secondary small">Tipo Doc.</label>
-                            <select name="txtTipoDocModal" class="form-select rounded-3 shadow-sm border-0 bg-white" required>
+                            <label for="txtTipoDocModal" class="form-label fw-semibold text-secondary small">Tipo Doc.</label>
+                            <select id="txtTipoDocModal" name="txtTipoDocModal" class="form-select rounded-3 shadow-sm border-0 bg-white" required>
                                 <option value="">Seleccione...</option>
                                 <c:forEach var="tipo" items="${tiposDocumento}">
                                     <option value="${tipo.id_Tipodocumento}">${tipo.descripcion_tipodoc}</option>
@@ -275,20 +275,20 @@
                             </select>
                         </div>
                         <div class="col-md-8">
-                            <label class="form-label fw-semibold text-secondary small">Número de Documento</label>
+                            <label for="txtDocumentoModal" class="form-label fw-semibold text-secondary small">Número de Documento</label>
                             <input type="text" name="txtDocumentoModal" id="txtDocumentoModal" class="form-control rounded-3 shadow-sm border-0 bg-white fw-bold" required>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-secondary small">Fecha Nac.</label>
-                            <input type="date" name="txtFechaNacModal" class="form-control rounded-3 shadow-sm border-0 bg-white" required>
+                            <label for="txtFechaNacModal" class="form-label fw-semibold text-secondary small">Fecha Nac.</label>
+                            <input type="date" id="txtFechaNacModal" name="txtFechaNacModal" class="form-control rounded-3 shadow-sm border-0 bg-white" required>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-secondary small">Teléfono</label>
-                            <input type="text" name="txtTelefonoModal" class="form-control rounded-3 shadow-sm border-0 bg-white" required>
+                            <label for="txtTelefonoModal" class="form-label fw-semibold text-secondary small">Teléfono</label>
+                            <input type="text" id="txtTelefonoModal" name="txtTelefonoModal" class="form-control rounded-3 shadow-sm border-0 bg-white" required>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold text-secondary small">Correo Electrónico</label>
-                            <input type="email" name="txtCorreoModal" class="form-control rounded-3 shadow-sm border-0 bg-white" required>
+                            <label for="txtCorreoModal" class="form-label fw-semibold text-secondary small">Correo Electrónico</label>
+                            <input type="email" id="txtCorreoModal" name="txtCorreoModal" class="form-control rounded-3 shadow-sm border-0 bg-white" required>
                         </div>
 
                         <div class="col-12 mt-4 text-end border-top border-light pt-3">
@@ -302,9 +302,9 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js" integrity="sha256-wA/Uccu1vNnJg6xU1+zB9wYqQ1U3L3+lB5zK0hQ5b5E=" crossorigin="anonymous"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {

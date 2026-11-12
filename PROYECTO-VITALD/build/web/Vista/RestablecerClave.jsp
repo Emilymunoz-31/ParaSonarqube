@@ -10,8 +10,8 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="${ctx}/Vista/Imagenes/logo2.0.png">
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${ctx}/Vista/Css/Cssvital.css">
@@ -26,7 +26,7 @@
             </div>
 
             <div class="otp-Form shadow-lg p-4 p-md-5 bg-white rounded-4 position-relative w-100">
-                <a href="${ctx}/Inicio_sesion" class="exitBtn" title="Cancelar">&times;</a>
+                <a href="${ctx}/Inicio_sesion" class="exitBtn" title="Cancelar" aria-label="Cancelar">&times;</a>
 
                 <div class="step-track">
                     <span class="seg done"></span>
@@ -59,9 +59,16 @@
                         <input type="hidden" id="codigoCompleto" name="codigo" value="">
 
                         <div class="inputContainer d-flex justify-content-center gap-2 w-100 my-2">
-                            <input required maxlength="1" type="text" inputmode="text" class="otp-input form-control text-center fs-4 fw-bold" id="otp-input1" autofocus />
+                            <label for="otp-input1" class="visually-hidden">Primer carácter del código</label>
+                            <input required maxlength="1" type="text" inputmode="text" class="otp-input form-control text-center fs-4 fw-bold" id="otp-input1" />
+
+                            <label for="otp-input2" class="visually-hidden">Segundo carácter del código</label>
                             <input required maxlength="1" type="text" inputmode="text" class="otp-input form-control text-center fs-4 fw-bold" id="otp-input2" />
+
+                            <label for="otp-input3" class="visually-hidden">Tercer carácter del código</label>
                             <input required maxlength="1" type="text" inputmode="text" class="otp-input form-control text-center fs-4 fw-bold" id="otp-input3" />
+
+                            <label for="otp-input4" class="visually-hidden">Cuarto carácter del código</label>
                             <input required maxlength="1" type="text" inputmode="text" class="otp-input form-control text-center fs-4 fw-bold" id="otp-input4" />
                         </div>
                         <div id="otpError" class="small text-center d-none">
@@ -158,7 +165,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         const inputs = document.querySelectorAll('.otp-input');
         const formPaso1 = document.getElementById('formPaso1');

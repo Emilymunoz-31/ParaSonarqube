@@ -356,6 +356,8 @@
                         </div>
                     </c:if>
 
+                    <!-- Etiqueta vinculada a documento (accesibilidad para SonarQube) -->
+                    <label for="documento" class="visually-hidden">Número de documento</label>
                     <input type="text"
                            id="documento"
                            name="documento"
@@ -367,6 +369,8 @@
                            autocomplete="off">
 
                     <div class="password-container-flex">
+                        <!-- Etiqueta vinculada a contraseña (accesibilidad para SonarQube) -->
+                        <label for="contrasena" class="visually-hidden">Contraseña</label>
                         <input type="password"
                                id="contrasena"
                                name="contrasena"
@@ -374,7 +378,7 @@
                                class="input-react-style"
                                required
                                autocomplete="current-password">
-                        <button type="button" class="toggle-password-btn" onclick="togglePassword()" title="Mostrar/Ocultar contraseña">
+                        <button type="button" class="toggle-password-btn" onclick="togglePassword()" title="Mostrar/Ocultar contraseña" aria-label="Mostrar u ocultar contraseña">
                             <i class="bi bi-eye-slash" id="iconoOjo"></i>
                         </button>
                     </div>
@@ -390,8 +394,7 @@
         </div>
     </div>
 
-    <!-- Corrección SonarQube: Atributos integrity y crossorigin en el JS de Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         function togglePassword() {
             const inputPass = document.getElementById('contrasena');

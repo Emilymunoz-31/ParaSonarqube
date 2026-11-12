@@ -141,7 +141,8 @@
                                         <input type="hidden" name="accion" value="cambiarEstado">
                                         <input type="hidden" name="idCita" value="${cita.id_Cita}">
 
-                                        <select name="nuevoEstado" class="form-select select-estado px-3 py-1 rounded-pill fw-semibold border ${colorEstado}" onchange="this.form.submit()">
+                                        <label for="nuevoEstado_${cita.id_Cita}" class="visually-hidden">Estado de la cita para ${empty cita.nombrePaciente ? 'paciente' : cita.nombrePaciente}</label>
+                                        <select id="nuevoEstado_${cita.id_Cita}" name="nuevoEstado" class="form-select select-estado px-3 py-1 rounded-pill fw-semibold border ${colorEstado}" onchange="this.form.submit()">
                                             <c:choose>
                                                 <c:when test="${not empty estadosCita}">
                                                     <c:forEach var="estadoCatalogo" items="${estadosCita}">

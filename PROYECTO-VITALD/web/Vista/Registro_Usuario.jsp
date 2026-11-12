@@ -103,24 +103,20 @@
 
                     <div class="col-md-4">
                         <label for="txtTipoDoc" class="form-label fw-semibold text-secondary small">Tipo Documento</label>
-                        <c:choose>
-                            <c:when test="${not empty usuarioEditar}">
-                                <select class="form-select shadow-sm rounded-4 border-white bg-light text-muted" disabled>
-                                    <c:forEach var="tipo" items="${tiposDocumento}">
-                                        <option value="${tipo.id_Tipodocumento}" ${valores.txtTipoDoc == tipo.id_Tipodocumento ? 'selected' : ''}>${tipo.descripcion_tipodoc}</option>
-                                    </c:forEach>
-                                </select>
-                                <input type="hidden" name="txtTipoDoc" value="${valores.txtTipoDoc}">
-                            </c:when>
-                            <c:otherwise>
-                                <select id="txtTipoDoc" name="txtTipoDoc" class="form-select shadow-sm rounded-4 border-white bg-white" required>
-                                    <option value="">Seleccione...</option>
-                                    <c:forEach var="tipo" items="${tiposDocumento}">
-                                        <option value="${tipo.id_Tipodocumento}" ${valores.txtTipoDoc == tipo.id_Tipodocumento ? 'selected' : ''}>${tipo.descripcion_tipodoc}</option>
-                                    </c:forEach>
-                                </select>
-                            </c:otherwise>
-                        </c:choose>
+                        <select id="txtTipoDoc"
+                                name="${empty usuarioEditar ? 'txtTipoDoc' : 'txtTipoDocDisplay'}"
+                                class="form-select shadow-sm rounded-4 border-white ${not empty usuarioEditar ? 'bg-light text-muted' : 'bg-white'}"
+                                ${not empty usuarioEditar ? 'disabled' : 'required'}>
+                            <c:if test="${empty usuarioEditar}">
+                                <option value="">Seleccione...</option>
+                            </c:if>
+                            <c:forEach var="tipo" items="${tiposDocumento}">
+                                <option value="${tipo.id_Tipodocumento}" ${valores.txtTipoDoc == tipo.id_Tipodocumento ? 'selected' : ''}>${tipo.descripcion_tipodoc}</option>
+                            </c:forEach>
+                        </select>
+                        <c:if test="${not empty usuarioEditar}">
+                            <input type="hidden" name="txtTipoDoc" value="${valores.txtTipoDoc}">
+                        </c:if>
                     </div>
 
                     <div class="col-md-4">
@@ -191,7 +187,7 @@
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-warning border-opacity-50">
                                     <span class="input-group-text bg-white text-warning border-0"><i class="bi bi-lock-fill"></i></span>
                                     <input type="password" id="txtPassword" name="txtPassword" class="form-control border-0 bg-white fw-bold" value="${valores.txtPassword}" placeholder="••••••••" required>
-                                    <button class="btn bg-white border-0 text-secondary px-3" type="button" id="btnTogglePassword" title="Mostrar/Ocultar Contraseña">
+                                    <button class="btn bg-white border-0 text-secondary px-3" type="button" id="btnTogglePassword" title="Mostrar/Ocultar Contraseña" aria-label="Mostrar u ocultar contraseña">
                                         <i class="bi bi-eye-fill" id="iconTogglePassword"></i>
                                     </button>
                                 </div>
@@ -252,11 +248,11 @@
                         <table class="table table-vital table-hover table-borderless align-middle mb-0">
                             <thead>
                                 <tr>
-                                    <th class="ps-4 py-3">Médico Especialista</th>
-                                    <th class="py-3">Documento</th>
-                                    <th class="py-3">Contacto</th>
-                                    <th class="py-3 text-center">Rol</th>
-                                    <th class="pe-4 py-3 text-end">Acciones</th>
+                                    <th scope="col" class="ps-4 py-3">Médico Especialista</th>
+                                    <th scope="col" class="py-3">Documento</th>
+                                    <th scope="col" class="py-3">Contacto</th>
+                                    <th scope="col" class="py-3 text-center">Rol</th>
+                                    <th scope="col" class="pe-4 py-3 text-end">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -278,8 +274,8 @@
                                                 <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2 rounded-pill">${usuario.descripcionRol}</span>
                                             </td>
                                             <td class="pe-4 py-3 text-end">
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle me-1" href="${ctx}/RegistroUsuarioServlet?accion=editar&id=${usuario.id_Usuario}"><i class="bi bi-pencil-square text-primary"></i></a>
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle" href="${ctx}/RegistroUsuarioServlet?accion=eliminar&id=${usuario.id_Usuario}" onclick="return confirm('¿Remover este usuario?')"><i class="bi bi-trash-fill text-danger"></i></a>
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle me-1" title="Editar" aria-label="Editar usuario" href="${ctx}/RegistroUsuarioServlet?accion=editar&id=${usuario.id_Usuario}"><i class="bi bi-pencil-square text-primary"></i></a>
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle" title="Eliminar" aria-label="Eliminar usuario" href="${ctx}/RegistroUsuarioServlet?accion=eliminar&id=${usuario.id_Usuario}" onclick="return confirm('¿Remover este usuario?')"><i class="bi bi-trash-fill text-danger"></i></a>
                                             </td>
                                         </tr>
                                     </c:if>
@@ -294,11 +290,11 @@
                         <table class="table table-vital table-hover table-borderless align-middle mb-0">
                             <thead>
                                 <tr>
-                                    <th class="ps-4 py-3">Personal Administrativo</th>
-                                    <th class="py-3">Documento</th>
-                                    <th class="py-3">Contacto</th>
-                                    <th class="py-3 text-center">Rol</th>
-                                    <th class="pe-4 py-3 text-end">Acciones</th>
+                                    <th scope="col" class="ps-4 py-3">Personal Administrativo</th>
+                                    <th scope="col" class="py-3">Documento</th>
+                                    <th scope="col" class="py-3">Contacto</th>
+                                    <th scope="col" class="py-3 text-center">Rol</th>
+                                    <th scope="col" class="pe-4 py-3 text-end">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -320,8 +316,8 @@
                                                 <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-3 py-2 rounded-pill">${usuario.descripcionRol}</span>
                                             </td>
                                             <td class="pe-4 py-3 text-end">
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle me-1" href="${ctx}/RegistroUsuarioServlet?accion=editar&id=${usuario.id_Usuario}"><i class="bi bi-pencil-square text-primary"></i></a>
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle" href="${ctx}/RegistroUsuarioServlet?accion=eliminar&id=${usuario.id_Usuario}" onclick="return confirm('¿Remover este usuario?')"><i class="bi bi-trash-fill text-danger"></i></a>
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle me-1" title="Editar" aria-label="Editar usuario" href="${ctx}/RegistroUsuarioServlet?accion=editar&id=${usuario.id_Usuario}"><i class="bi bi-pencil-square text-primary"></i></a>
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle" title="Eliminar" aria-label="Eliminar usuario" href="${ctx}/RegistroUsuarioServlet?accion=eliminar&id=${usuario.id_Usuario}" onclick="return confirm('¿Remover este usuario?')"><i class="bi bi-trash-fill text-danger"></i></a>
                                             </td>
                                         </tr>
                                     </c:if>
@@ -336,11 +332,11 @@
                         <table class="table table-vital table-hover table-borderless align-middle mb-0">
                             <thead>
                                 <tr>
-                                    <th class="ps-4 py-3">Paciente Registrado</th>
-                                    <th class="py-3">Documento</th>
-                                    <th class="py-3">Contacto</th>
-                                    <th class="py-3 text-center">Rol</th>
-                                    <th class="pe-4 py-3 text-end">Acciones</th>
+                                    <th scope="col" class="ps-4 py-3">Paciente Registrado</th>
+                                    <th scope="col" class="py-3">Documento</th>
+                                    <th scope="col" class="py-3">Contacto</th>
+                                    <th scope="col" class="py-3 text-center">Rol</th>
+                                    <th scope="col" class="pe-4 py-3 text-end">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -362,8 +358,8 @@
                                                 <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary-subtle px-3 py-2 rounded-pill">${usuario.descripcionRol}</span>
                                             </td>
                                             <td class="pe-4 py-3 text-end">
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle me-1" href="${ctx}/RegistroUsuarioServlet?accion=editar&id=${usuario.id_Usuario}"><i class="bi bi-pencil-square text-primary"></i></a>
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle" href="${ctx}/RegistroUsuarioServlet?accion=eliminar&id=${usuario.id_Usuario}" onclick="return confirm('¿Remover este paciente?')"><i class="bi bi-trash-fill text-danger"></i></a>
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle me-1" title="Editar" aria-label="Editar paciente" href="${ctx}/RegistroUsuarioServlet?accion=editar&id=${usuario.id_Usuario}"><i class="bi bi-pencil-square text-primary"></i></a>
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle" title="Eliminar" aria-label="Eliminar paciente" href="${ctx}/RegistroUsuarioServlet?accion=eliminar&id=${usuario.id_Usuario}" onclick="return confirm('¿Remover este paciente?')"><i class="bi bi-trash-fill text-danger"></i></a>
                                             </td>
                                         </tr>
                                     </c:if>
@@ -378,7 +374,6 @@
     </section>
 </main>
 
-<!-- Nasimpa ti SonarQube: Nainayon ti integrity ken crossorigin para iti Bootstrap JS ken SweetAlert2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js" integrity="sha256-wA/Uccu1vNnJg6xU1+zB9wYqQ1U3L3+lB5zK0hQ5b5E=" crossorigin="anonymous"></script>
 <script src="${ctx}/Vista/Javascript/validaciones.js"></script>

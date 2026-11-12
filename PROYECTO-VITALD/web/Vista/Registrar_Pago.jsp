@@ -76,7 +76,7 @@
                         
                         <div class="row g-4">
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">1. Cita y Paciente Asociado</label>
+                                <label for="selectCitaPago" class="form-label fw-semibold text-secondary small">1. Cita y Paciente Asociado</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-calendar-check-fill"></i></span>
                                     
@@ -131,7 +131,7 @@
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">2. Monto de la Transacción</label>
+                                <label for="inputMontoPago" class="form-label fw-semibold text-secondary small">2. Monto de la Transacción</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-success border-0 fs-5 fw-bold">$</span>
                                     
@@ -145,10 +145,10 @@
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">3. Método de Pago</label>
+                                <label for="selectMedioPago" class="form-label fw-semibold text-secondary small">3. Método de Pago</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-credit-card-2-front-fill"></i></span>
-                                    <select name="medioPago" class="form-select border-0 bg-white fw-medium" required>
+                                    <select id="selectMedioPago" name="medioPago" class="form-select border-0 bg-white fw-medium" required>
                                         <option value="" disabled selected>Seleccione la forma de pago...</option>
                                         <c:forEach var="medio" items="${mediosPago}">
                                             <option value="${medio.id_Mediopago}" ${pagoEditar.medio_pago_id_Mediopago == medio.id_Mediopago ? 'selected' : ''}>${medio.descripcion_mediopa}</option>
@@ -159,10 +159,10 @@
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">4. Estado de la Factura</label>
+                                <label for="selectEstadoPago" class="form-label fw-semibold text-secondary small">4. Estado de la Factura</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-bookmark-check-fill"></i></span>
-                                    <select name="estadoPago" class="form-select border-0 bg-white fw-bold" required>
+                                    <select id="selectEstadoPago" name="estadoPago" class="form-select border-0 bg-white fw-bold" required>
                                         <option value="" disabled selected>Seleccione el estado...</option>
                                         <c:forEach var="estado" items="${estadosPago}">
                                             <option value="${estado.id_Estadopago}" ${pagoEditar.estado_pago_id_Estadopago == estado.id_Estadopago ? 'selected' : ''}>${estado.descripcion_estadop}</option>

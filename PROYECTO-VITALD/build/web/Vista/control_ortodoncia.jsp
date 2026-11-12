@@ -13,8 +13,8 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="${ctx}/Vista/Imagenes/logo2.0.png">
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
     <link rel="stylesheet" href="${ctx}/Vista/Css/Cssvital.css">
 </head>
 <body class="dashboard-shell" style="background-color: var(--vital-bg-page); overflow-y: auto !important;">
@@ -59,6 +59,7 @@
                 <form action="${ctx}/ControlOrtodonciaServlet" method="POST" class="needs-validation" id="formBusqueda" novalidate>
                     <div class="input-group input-group-lg shadow-sm rounded-pill overflow-hidden border border-white mb-2">
                         <span class="input-group-text bg-white text-primary border-0 ps-4"><i class="bi bi-person-vcard fs-5"></i></span>
+                        <label for="txtDocumentoBusqueda" class="visually-hidden">Número de documento del paciente</label>
                         <input type="text" 
                                inputmode="numeric" 
                                pattern="[0-9]{6,12}" 
@@ -69,8 +70,7 @@
                                placeholder="Ej. 1023456789" 
                                value="${documentoBuscado}" 
                                required 
-                               autocomplete="off" 
-                               autofocus>
+                               autocomplete="off">
                         <button class="btn btn-primary px-4 fw-bold" type="submit" id="btnBuscar">
                             <span class="btn-label"><i class="bi bi-search me-2 d-none d-sm-inline"></i>Buscar</span>
                             <span class="spinner-border spinner-border-sm text-white" role="status" aria-hidden="true"></span>
@@ -160,7 +160,7 @@
                                     <span>${totalConfirmadas} Sesiones Atendidas</span>
                                 </div>
                                 <div class="progress rounded-pill bg-dark bg-opacity-25" style="height: 9px;">
-                                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${progresoPorcentaje}%;"></div>
+                                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Progreso global estimado" aria-valuenow="${progresoPorcentaje}" aria-valuemin="0" aria-valuemax="100" style="width: ${progresoPorcentaje}%;"></div>
                                 </div>
                             </div>
                         </div>
@@ -245,12 +245,12 @@
                                     <table class="table table-vital table-hover align-middle mb-0">
                                         <thead class="bg-light">
                                             <tr>
-                                                <th class="ps-4 py-3 text-center">Sesión</th>
-                                                <th class="py-3">Fecha y Hora</th>
-                                                <th class="py-3">Tratamiento / Procedimiento</th>
-                                                <th class="py-3">Especialista</th>
-                                                <th class="py-3 text-center">Estado</th>
-                                                <th class="pe-4 py-3">Detalle Clínico / Ajuste</th>
+                                                <th scope="col" class="ps-4 py-3 text-center">Sesión</th>
+                                                <th scope="col" class="py-3">Fecha y Hora</th>
+                                                <th scope="col" class="py-3">Tratamiento / Procedimiento</th>
+                                                <th scope="col" class="py-3">Especialista</th>
+                                                <th scope="col" class="py-3 text-center">Estado</th>
+                                                <th scope="col" class="pe-4 py-3">Detalle Clínico / Ajuste</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -348,20 +348,20 @@
 
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
     (function () {
         'use strict';
 
-        var inputDoc = document.getElementById('txtDocumentoBusqueda');
+        const inputDoc = document.getElementById('txtDocumentoBusqueda');
         if (inputDoc) {
             inputDoc.addEventListener('input', function () {
-                this.value = this.value.replace(/[^0-9]/g, '');
+                this.value = this.value.replace(/\D/g, '');
             });
         }
 
-        var formBusqueda = document.getElementById('formBusqueda');
-        var btnBuscar = document.getElementById('btnBuscar');
+        const formBusqueda = document.getElementById('formBusqueda');
+        const btnBuscar = document.getElementById('btnBuscar');
         if (formBusqueda && btnBuscar) {
             formBusqueda.addEventListener('submit', function () {
                 if (inputDoc && inputDoc.value.trim().length >= 6) {
@@ -371,39 +371,42 @@
         }
 
         document.querySelectorAll('.stat-value[data-count]').forEach(function (el) {
-            var target = parseInt(el.getAttribute('data-count'), 10) || 0;
-            var current = 0;
-            var duration = 500;
-            var start = null;
+            const target = Number.parseInt(el.getAttribute('data-count'), 10) || 0;
+            const duration = 500;
+            let current = 0;
+            let start = null;
             function step(ts) {
                 if (!start) start = ts;
-                var progress = Math.min((ts - start) / duration, 1);
+                const progress = Math.min((ts - start) / duration, 1);
                 current = Math.floor(progress * target);
                 el.textContent = current;
-                if (progress < 1) requestAnimationFrame(step);
-                else el.textContent = target;
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    el.textContent = target;
+                }
             }
             requestAnimationFrame(step);
         });
 
-        var chips = document.querySelectorAll('.filter-chip');
+        const chips = document.querySelectorAll('.filter-chip');
         chips.forEach(function (chip) {
             chip.addEventListener('click', function () {
                 chips.forEach(function (c) { c.classList.remove('active'); });
                 chip.classList.add('active');
-                var filter = chip.getAttribute('data-filter');
+                const filter = chip.getAttribute('data-filter');
 
                 document.querySelectorAll('#vistaTabla tbody tr, #vistaTimeline .timeline-item').forEach(function (row) {
-                    var status = row.getAttribute('data-status');
-                    var show = (filter === 'all' || status === filter);
+                    const status = row.getAttribute('data-status');
+                    const show = (filter === 'all' || status === filter);
                     row.classList.toggle('row-hidden', !show);
                 });
             });
         });
 
-        var viewButtons = document.querySelectorAll('#viewSwitch button');
-        var vistaTabla = document.getElementById('vistaTabla');
-        var vistaTimeline = document.getElementById('vistaTimeline');
+        const viewButtons = document.querySelectorAll('#viewSwitch button');
+        const vistaTabla = document.getElementById('vistaTabla');
+        const vistaTimeline = document.getElementById('vistaTimeline');
         viewButtons.forEach(function (btn) {
             btn.addEventListener('click', function () {
                 viewButtons.forEach(function (b) { b.classList.remove('active'); });
