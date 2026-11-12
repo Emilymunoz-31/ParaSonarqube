@@ -1,4 +1,4 @@
-    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="jakarta.tags.core" prefix="c" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -62,10 +62,10 @@
                         
                         <div class="row g-4">
                             <div class="col-12">
-                                <label class="form-label fw-semibold text-secondary small">Descripción del Documento</label>
+                                <label for="inputDescripcionDocumento" class="form-label fw-semibold text-secondary small">Descripción del Documento</label>
                                 <div class="input-group has-validation shadow-sm rounded-4 overflow-hidden border border-white">
                                     <span class="input-group-text bg-white text-primary border-0"><i class="bi bi-fonts"></i></span>
-                                    <input type="text" name="descripcion" class="form-control border-0 bg-white fw-bold text-dark" value="${tipoEditar.descripcion_tipodoc}" placeholder="Ej: Cédula de Extranjería" required>
+                                    <input type="text" id="inputDescripcionDocumento" name="descripcion" class="form-control border-0 bg-white fw-bold text-dark" value="${tipoEditar.descripcion_tipodoc}" placeholder="Ej: Cédula de Extranjería" required>
                                     <div class="invalid-feedback">Por favor ingrese la descripción del documento.</div>
                                 </div>
                                 <div class="form-text mt-2 small text-muted"><i class="bi bi-info-circle me-1"></i>Escriba el nombre completo oficial del documento.</div>
@@ -104,9 +104,9 @@
                         <table class="table table-vital table-hover table-borderless align-middle mb-0">
                             <thead class="sticky-top bg-light" style="z-index: 1;">
                                 <tr>
-                                    <th class="ps-4 py-3 rounded-start">Descripción del Documento</th>
-                                    <th class="py-3 text-center">Abreviatura Sugerida</th>
-                                    <th class="pe-4 py-3 text-end rounded-end">Acciones</th>
+                                    <th scope="col" class="ps-4 py-3 rounded-start">Descripción del Documento</th>
+                                    <th scope="col" class="py-3 text-center">Abreviatura Sugerida</th>
+                                    <th scope="col" class="pe-4 py-3 text-end rounded-end">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -123,10 +123,10 @@
                                         </td>
                                         <td class="pe-4 py-3 text-end">
                                             <div class="d-flex justify-content-end gap-1">
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect" style="width: 35px; height: 35px; line-height: 22px;" title="Editar Documento" href="${ctx}/RegistroTipoDocumentoServlet?accion=editar&id=${tipo.id_Tipodocumento}">
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect" style="width: 35px; height: 35px; line-height: 22px;" title="Editar Documento" aria-label="Editar Documento" href="${ctx}/RegistroTipoDocumentoServlet?accion=editar&id=${tipo.id_Tipodocumento}">
                                                     <i class="bi bi-pencil-square text-primary"></i>
                                                 </a>
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect delete-btn" style="width: 35px; height: 35px; line-height: 22px;" title="Eliminar Documento" href="${ctx}/RegistroTipoDocumentoServlet?accion=eliminar&id=${tipo.id_Tipodocumento}">
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect delete-btn" style="width: 35px; height: 35px; line-height: 22px;" title="Eliminar Documento" aria-label="Eliminar Documento" href="${ctx}/RegistroTipoDocumentoServlet?accion=eliminar&id=${tipo.id_Tipodocumento}">
                                                     <i class="bi bi-trash-fill text-danger"></i>
                                                 </a>
                                             </div>

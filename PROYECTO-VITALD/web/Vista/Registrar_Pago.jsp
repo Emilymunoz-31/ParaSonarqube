@@ -19,7 +19,9 @@
     <!-- Nasimpa ti SonarQube: Nainayon ti integrity ken crossorigin para iti Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Nasimpa ti SonarQube: Inusar ti eksakto a bersion (11.11.0) ken nainayon ti integrity ken crossorigin -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" integrity="sha256-h2GcvOa4U/JPMk4f4FqZ69X3F5e3ksRzZ8s/5qM829c=" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="${ctx}/Vista/Css/Cssvital.css">
 </head>
 <body class="dashboard-shell" style="background-color: var(--vital-bg-page); overflow-y: auto !important;">
@@ -212,11 +214,11 @@
                         <table class="table table-vital table-hover table-borderless align-middle mb-0" id="tablaPagos">
                             <thead class="sticky-top bg-light" style="z-index: 1;">
                                 <tr>
-                                    <th class="ps-4 py-3 rounded-start">Paciente y Tratamiento</th>
-                                    <th class="py-3">Monto Total</th>
-                                    <th class="py-3 text-center">Método</th>
-                                    <th class="py-3 text-center">Estado</th>
-                                    <th class="pe-4 py-3 text-end rounded-end">Acciones</th>
+                                    <th scope="col" class="ps-4 py-3 rounded-start">Paciente y Tratamiento</th>
+                                    <th scope="col" class="py-3">Monto Total</th>
+                                    <th scope="col" class="py-3 text-center">Método</th>
+                                    <th scope="col" class="py-3 text-center">Estado</th>
+                                    <th scope="col" class="pe-4 py-3 text-end rounded-end">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -268,10 +270,10 @@
                                         </td>
                                         <td class="pe-4 py-3 text-end">
                                             <div class="d-flex justify-content-end gap-1">
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect" style="width: 35px; height: 35px; line-height: 22px;" title="Editar Transacción" href="${ctx}/RegistroPagoServlet?accion=editar&id=${pago.id_Pago}">
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect" style="width: 35px; height: 35px; line-height: 22px;" title="Editar Transacción" aria-label="Editar Transacción" href="${ctx}/RegistroPagoServlet?accion=editar&id=${pago.id_Pago}">
                                                     <i class="bi bi-pencil-square text-primary"></i>
                                                 </a>
-                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect delete-btn" style="width: 35px; height: 35px; line-height: 22px;" title="Anular Pago" href="${ctx}/RegistroPagoServlet?accion=eliminar&id=${pago.id_Pago}">
+                                                <a class="btn btn-sm bg-white border shadow-sm rounded-circle hover-effect delete-btn" style="width: 35px; height: 35px; line-height: 22px;" title="Anular Pago" aria-label="Anular Pago" href="${ctx}/RegistroPagoServlet?accion=eliminar&id=${pago.id_Pago}">
                                                     <i class="bi bi-trash-fill text-danger"></i>
                                                 </a>
                                             </div>
@@ -298,9 +300,9 @@
     </div>
 </main>
 
-<!-- Nasimpa ti SonarQube: Nainayon ti integrity ken crossorigin para iti Bootstrap JS -->
+<!-- Nasimpa ti SonarQube: Nainayon ti integrity ken crossorigin para iti Bootstrap JS ken SweetAlert2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js" integrity="sha256-wA/Uccu1vNnJg6xU1+zB9wYqQ1U3L3+lB5zK0hQ5b5E=" crossorigin="anonymous"></script>
 <script src="${ctx}/Vista/Javascript/validaciones.js"></script>
 
 <script>
